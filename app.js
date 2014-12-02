@@ -34,7 +34,7 @@ var paths = [
 	'/packing/po'
 ];
 
-function handler() {
+function handler(req, res) {
 	fs.readFile(__dirname + '/client.js', function (err, data) {
 		if (err) {
 			res.writeHead(500);

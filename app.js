@@ -1,5 +1,5 @@
 
-var app = require('http').createServer();
+var app = require('http').createServer(handler);
 var io = require('socket.io')(app);
 var fs = require('fs');
 
@@ -33,6 +33,18 @@ var paths = [
 	'/packing',
 	'/packing/po'
 ];
+
+function handler() {
+	fs.readFile(__dirname + '/client.js', function (err, data) {
+		if (err) {
+			res.writeHead(500);
+			return res.end('Error loading client.js');
+		}
+
+		res.writeHead(200);
+		res.end(data);
+	});
+}
 
 function formatPath(path) {
 	return path.replace(/\d/, '{id}').replace(/\d/g, '');

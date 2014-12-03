@@ -1,6 +1,6 @@
 (function () {
 
-	var socket = io.connect('http://192.168.254.53:8080');
+	var socket = io.connect('http://whoelse.eu-gb.mybluemix.net');
 	var username = getUsername();
 	var coViewers = [];
 	var $viewers = $('#viewers');

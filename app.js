@@ -25,7 +25,7 @@ connection.connect(function (err) {
 
 poolingTimer = setTimeout(poolingLoop, POOLING_INTERVAL);
 
-app.listen(8080);
+app.listen(process.env.PORT || 8080);
 
 function handler(req, res) {
 	fs.readFile(__dirname + '/client.js', function (err, data) {

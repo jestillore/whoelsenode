@@ -6,11 +6,11 @@ var fs = require('fs');
 var _ = require('underscore');
 
 var connection = mysql.createConnection({
-	host: 'localhost',
-	user: 'root',
-	password: 'root',
-	database: 'whoelse',
-	port: 3306
+	host: '159.8.128.49',
+	user: 'urWUZf4q4SIa4',
+	password: 'pMUbEkjK6HXDF',
+	database: 'd18ff4a13a2d841f7ab04c27b36f14ca0',
+	port: 3307
 });
 
 var sockets = [];
@@ -145,5 +145,3 @@ io.on('connection', function (socket) {
 	});
 
 });
-
-console.log('server running on port 8080');

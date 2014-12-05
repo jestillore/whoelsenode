@@ -3,22 +3,32 @@
 	var socket = io.connect('http://whoelse.eu-gb.mybluemix.net');
 	var username = getUsername();
 	var coViewers = [];
+	var users = [];
 	var $viewers = $('#viewers');
+	var $users = $('#users');
 	var $notifications = $('#notifications');
 
 	socket.on('viewers', function (viewers) {
 		coViewers = viewers;
-		updateUserList();
+		updateViewerList();
+	});
+
+	socket.on('users', function (userz) {
+		users = userz;
 	});
 
 	socket.on('new viewer', function (viewer) {
 		coViewers.push(viewer);
-		updateUserList();
+		updateViewerList();
+	});
+
+	socket.on('new user', function (user) {
+		users.push(user);
 	});
 
 	socket.on('leave', function (viewer) {
 		coViewers.splice(coViewers.indexOf(viewer), 1);
-		updateUserList();
+		updateViewerList();
 	});
 
 	socket.on('notification', function (notifications) {
@@ -36,12 +46,23 @@
 		pathname: window.location.pathname
 	});
 
-	function updateUserList() {
+	alert('Your username is ' + getUsername());
+
+	function updateViewerList() {
 		$viewers.empty();
 		$.each(coViewers, function (index, viewer) {
 			var $li = $('<li></li>');
 			$li.text(viewer);
 			$viewers.append($li);
+		});
+	}
+
+	function updateUserList() {
+		$users.empty();
+		$.each(users, function (index, user) {
+			var $li = $('<li></li>');
+			$li.text(user);
+			$users.append($li);
 		});
 	}
 

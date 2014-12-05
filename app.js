@@ -121,8 +121,13 @@ io.on('connection', function (socket) {
 		socket.room = room;
 		socket.userID = data.id;
 
+		// send all users to newcomer
+		socket.emit('users', _.pluck(socket, 'username'));
+
 		sockets.push(socket);
-		//console.log('new viewer');
+
+		// tell everyone i'm in
+		socket.broadcast.emit('new user', username);
 
 		// tell the current viewer someone is viewing same page
 		io.to(room).emit('new viewer', username);

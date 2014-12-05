@@ -15,6 +15,7 @@
 
 	socket.on('users', function (userz) {
 		users = userz;
+		updateUserList();
 	});
 
 	socket.on('new viewer', function (viewer) {
@@ -24,6 +25,7 @@
 
 	socket.on('new user', function (user) {
 		users.push(user);
+		updateUserList();
 	});
 
 	socket.on('leave', function (viewer) {
